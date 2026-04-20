@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر التقنية</title>
     <link rel="stylesheet" href="STYLE.CSS">
 </head>
@@ -13,39 +14,42 @@
 
     <div class="hero">
         <h2>أهلاً بك في متجرنا</h2>
-        <p>اختر أفضل الأجهزة الإلكترونية بضغطة زر</p>
+        <p>الأجهزة الإلكترونية الحديثة بين يديك</p>
     </div>
 
     <div class="products">
         <div class="product">
-            <img src="لابتوب.JPG" alt="لابتوب">
+            <img src="لابتوب.JPG" alt="لابتوب حديث">
             <h3>لابتوب حديث</h3>
             <p class="price">3500 ريال</p>
-            <button class="btn" onclick="addToCart('لابتوب', 3500)">أضف إلى السلة</button>
+            <button class="btn" onclick="addToCart('لابتوب حديث', 3500)">أضف إلى السلة</button>
         </div>
 
         <div class="product">
-            <img src="جوال.JPG" alt="جوال">
+            <img src="جوال.JPG" alt="هاتف ذكي">
             <h3>هاتف ذكي</h3>
             <p class="price">2200 ريال</p>
-            <button class="btn" onclick="addToCart('جوال', 2200)">أضف إلى السلة</button>
+            <button class="btn" onclick="addToCart('هاتف ذكي', 2200)">أضف إلى السلة</button>
         </div>
 
         <div class="product">
-            <img src="سماعة.JPG" alt="سماعة">
+            <img src="سماعة.JPG" alt="سماعات لاسلكية">
             <h3>سماعات لاسلكية</h3>
             <p class="price">300 ريال</p>
-            <button class="btn" onclick="addToCart('سماعة', 300)">أضف إلى السلة</button>
+            <button class="btn" onclick="addToCart('سماعات لاسلكية', 300)">أضف إلى السلة</button>
         </div>
     </div>
 
     <div id="cart-summary">
-        <strong>إجمالي السلة: <span id="total-price">0</span> ريال</strong>
-        <button class="btn" style="width: auto; margin-right: 20px; background: #25D366;" onclick="checkout()">تأكيد الطلب عبر واتساب 💬</button>
+        <div>
+            <strong>إجمالي السلة: <span id="total-price">0</span> ريال</strong>
+        </div>
+        <button class="btn" style="width: auto; background: #25D366;" onclick="checkout()">تأكيد الطلب (واتساب) 💬</button>
+        <button class="btn" style="width: auto; background: #dc3545;" onclick="clearCart()">تفريغ السلة 🗑️</button>
     </div>
 
     <footer>
-        جميع الحقوق محفوظة &copy; 2026 - متجر التقنية
+        جميع الحقوق محفوظة &copy; 2026 - مشروع متجر التقنية
     </footer>
 
     <script>
@@ -56,20 +60,32 @@
             total += price;
             items.push(name);
             document.getElementById('total-price').innerText = total;
-            // تنبيه بسيط للمستخدم عند الإضافة
-            console.log("تم إضافة " + name); 
+            alert("تم إضافة " + name + " بنجاح");
+        }
+
+        function clearCart() {
+            if(total === 0) return;
+            if(confirm("هل أنت متأكد من تفريغ السلة؟")) {
+                total = 0;
+                items = [];
+                document.getElementById('total-price').innerText = total;
+            }
         }
 
         function checkout() {
-            if(total === 0) { 
-                alert("السلة فارغة! يرجى اختيار منتج أولاً."); 
-                return; 
+            if(total === 0) {
+                alert("السلة فارغة! اختر منتجاً أولاً.");
+                return;
             }
-            // صياغة الرسالة التلقائية التي ستصلك على الواتساب
-            let message = "مرحباً، أريد طلب المنتجات التالية:\n" + items.join("\n") + "\n\nالإجمالي: " + total + " ريال";
             
-            // الرابط الجديد برقم جوالك
-            let whatsappUrl = "https://wa.me/966536200291?text=" + encodeURIComponent(message);
+            // تجهيز نص الرسالة للواتساب
+            let message = "مرحباً، أريد طلب المنتجات التالية:\n";
+            message += items.join("\n") + "\n\n";
+            message += "الإجمالي: " + total + " ريال";
+            
+            // رقم الجوال المحدث
+            const myNumber = "966536200291";
+            const whatsappUrl = "https://wa.me/" + myNumber + "?text=" + encodeURIComponent(message);
             
             window.open(whatsappUrl, '_blank');
         }
