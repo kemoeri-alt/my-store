@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8f8f8;
+  direction: rtl; /* لضمان الترتيب العربي */
+}
+
+header {
+  background: #000;
+  color: #fff;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+header h1 { margin: 0; }
+
+nav {
+  background: #111;
+  text-align: center;
+  padding: 10px 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.hero {
+  background: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product {
+  background: #fff;
+  border-radius: 8px;
+  width: 220px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.product img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #ddd;
+}
+
+.price {
+  font-weight: bold;
+  color: #000;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* تنسيق الزر ليطابق تصميمك */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn:hover { background: #333; }
+
+/* سلة التسوق في الأسفل */
+#cart-summary {
+  background: #fff;
+  border-top: 2px solid #000;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #000;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 100px; /* مسافة إضافية بسبب السلة الثابتة */
+}

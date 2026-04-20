@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>متجر التقنية</title>
+    <link rel="stylesheet" href="STYLE.CSS">
+</head>
+<body>
+
+    <header>
+        <h1>متجر التقنية 💻</h1>
+    </header>
+
+    <div class="hero">
+        <h2>أهلاً بك في متجرنا</h2>
+        <p>اختر أفضل الأجهزة الإلكترونية بضغطة زر</p>
+    </div>
+
+    <div class="products">
+        <div class="product">
+            <img src="لابتوب.JPG" alt="لابتوب">
+            <h3>لابتوب حديث</h3>
+            <p class="price">3500 ريال</p>
+            <button class="btn" onclick="addToCart('لابتوب', 3500)">أضف إلى السلة</button>
+        </div>
+
+        <div class="product">
+            <img src="جوال.JPG" alt="جوال">
+            <h3>هاتف ذكي</h3>
+            <p class="price">2200 ريال</p>
+            <button class="btn" onclick="addToCart('جوال', 2200)">أضف إلى السلة</button>
+        </div>
+
+        <div class="product">
+            <img src="سماعة.JPG" alt="سماعة">
+            <h3>سماعات لاسلكية</h3>
+            <p class="price">300 ريال</p>
+            <button class="btn" onclick="addToCart('سماعة', 300)">أضف إلى السلة</button>
+        </div>
+    </div>
+
+    <div id="cart-summary">
+        <strong>إجمالي السلة: <span id="total-price">0</span> ريال</strong>
+        <button class="btn" style="width: auto; margin-right: 20px; background: #25D366;" onclick="checkout()">تأكيد الطلب عبر واتساب 💬</button>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة &copy; 2026 - متجر التقنية
+    </footer>
+
+    <script>
+        let total = 0;
+        let items = [];
+
+        function addToCart(name, price) {
+            total += price;
+            items.push(name);
+            document.getElementById('total-price').innerText = total;
+            // تنبيه بسيط للمستخدم عند الإضافة
+            console.log("تم إضافة " + name); 
+        }
+
+        function checkout() {
+            if(total === 0) { 
+                alert("السلة فارغة! يرجى اختيار منتج أولاً."); 
+                return; 
+            }
+            // صياغة الرسالة التلقائية التي ستصلك على الواتساب
+            let message = "مرحباً، أريد طلب المنتجات التالية:\n" + items.join("\n") + "\n\nالإجمالي: " + total + " ريال";
+            
+            // الرابط الجديد برقم جوالك
+            let whatsappUrl = "https://wa.me/966536200291?text=" + encodeURIComponent(message);
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
